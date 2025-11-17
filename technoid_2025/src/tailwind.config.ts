@@ -5,32 +5,23 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}" 
   ],
   theme: {
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "#050505", // Cyberpunk Black
-        foreground: "#e0e0e0", // Cyberpunk Text
-        primary: {
-          DEFAULT: "#00f3ff", // Neon Cyan
-          foreground: "#000000",
-        },
-        secondary: {
-          DEFAULT: "#ff00ff", // Neon Pink
-          foreground: "#ffffff",
-        },
-        accent: {
-          DEFAULT: "#ffee00", // Neon Yellow
-          foreground: "#000000",
-        },
+        background: "#050505",
+        foreground: "#e0e0e0",
+        "neon-cyan": "#00f3ff",
+        "neon-pink": "#ff00ff",
+        "neon-yellow": "#ffee00",
       },
       fontFamily: {
-        // This connects your layout.tsx to Tailwind classes
-        audiowide: ["var(--font-audiowide)"], 
-        roboto: ["var(--font-roboto-condensed)"],
+        orbitron: ["var(--font-orbitron)"],
+        rajdhani: ["var(--font-rajdhani)"],
+      },
+      backgroundImage: {
+        "scanlines": "linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))",
       },
     },
   },
