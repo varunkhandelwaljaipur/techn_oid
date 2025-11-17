@@ -25,7 +25,9 @@
     "swiper": "^11.0.7",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^1.0.0"
+    "vaul": "^1.0.0",
+    "lucide-react": "^0.363.0",
+    "@studio-freight/react-lenis": "^1.0.42"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -42,4 +44,5 @@
   }
 
 }
+
 
