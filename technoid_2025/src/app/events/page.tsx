@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Camera, Clapperboard, Brain, Palette, Recycle, Puzzle, Gamepad, Bot, Zap, MapPin, Code } from "lucide-react";
 import React from "react";
 import CyberImage from "@/components/CyberImage"; 
+import Link from "next/link"; 
 
 // Helper component for icons based on event title
 const EventIcon = ({ title }: { title: string }) => {
@@ -115,40 +116,62 @@ export default function EventsPage() {
             {/* Events Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {category.events.map((event) => (
+                // --- THE EVENT CARD CONTAINER ---
                 <div 
                   key={event.title} 
-                  className="clip-tile group flex flex-col bg-cyber-black/70 backdrop-blur-sm border border-neon-cyan/30 overflow-hidden transition-all duration-300 hover:border-neon-cyan/100 hover:shadow-[0_0_30px_rgba(0,243,255,0.3)]"
+                  className="clip-tile group relative flex flex-col bg-cyber-black/70 backdrop-blur-sm border border-neon-cyan/30 overflow-hidden transition-all duration-300 hover:border-neon-cyan/100 hover:shadow-[0_0_30px_rgba(0,243,255,0.3)]"
                 >
-                  {/* Event Poster Image - Using SAFE Component */}
-                  <CyberImage
-                    src={event.poster}
-                    alt={`${event.title} Poster`}
-                    className="w-full h-48 object-cover mix-blend-luminosity group-hover:mix-blend-normal opacity-60 group-hover:opacity-100 transition-all duration-300"
-                  />
                   
-                  <div className="p-6 flex flex-col flex-grow">
-                    {/* Tag & Icon */}
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`font-mono text-sm ${category.categoryColor} opacity-80`}>
-                        {event.tag}
-                      </span>
-                      <EventIcon title={event.title} />
-                    </div>
+                  {/* --- 1. IMAGE AREA --- */}
+                  <div className="relative h-64 overflow-hidden">
+
+                    <CyberImage
+                      src={event.poster}
+                      alt={`${event.title} Poster`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 mix-blend-luminosity opacity-60 group-hover:opacity-100"
+                    />
+
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors" />
                     
-                    {/* Title */}
+   
+                    <div className="absolute top-0 left-0 w-full p-4 font-mono text-sm text-white drop-shadow-lg opacity-80">
+                        {event.tag}
+                    </div>
+                  </div>
+                  
+                  {/* --- 2. BOTTOM CONTENT & HOVER REVEAL --- */}
+                  <div className="p-4 flex flex-col flex-grow">
+                    
+                    {/* Main Title (Always Visible) */}
                     <h3 className={`text-2xl font-orbitron font-bold text-white mb-3`}>
                       {event.title}
                     </h3>
                     
-                    {/* Description */}
-                    <p className="font-rajdhani text-gray-300 text-lg leading-relaxed flex-grow">
-                      {event.desc}
-                    </p>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`font-mono text-sm ${category.categoryColor} opacity-80`}>
+                        {category.categoryTitle.includes("PRE-EVENTS") ? "PRE-EVENT" : "MAIN DAY"}
+                      </span>
+                      <EventIcon title={event.title} />
+                    </div>
+
+                
+                    <div className="absolute inset-0 pt-64 bg-cyber-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-full group-hover:translate-y-0">
+                        
+                        <div className="p-4 pt-16 h-full flex flex-col justify-between">
+                            {/* Description */}
+                            <p className="font-rajdhani text-gray-300 text-lg leading-relaxed flex-grow">
+                                {event.desc}
+                            </p>
+
                     
-                    {/* Register Button */}
-                    <Button variant="outline" className="mt-6 w-full border-neon-cyan/50 hover:bg-neon-cyan/20 hover:text-white font-orbitron tracking-wider">
-                      Register Now
-                    </Button>
+                            <Button asChild variant="default" className="mt-4 w-full">
+                                <Link href="https://registration.sxcjpr.edu.in/event/technoid-2025/">
+                                    REGISTER NOW
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
+
                   </div>
                 </div>
               ))}
