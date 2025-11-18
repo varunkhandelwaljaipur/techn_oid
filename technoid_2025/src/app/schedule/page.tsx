@@ -1,39 +1,44 @@
 import { TitleBanner } from "@/components/sections/TitleBanner";
+import CyberImage from "@/components/CyberImage"; // Using our safe image component
 import Link from "next/link";
-import { ArrowDownCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 
 export default function SchedulePage() {
-  // Assuming the Rulebook PDF is placed at /public/rulebook.pdf
-  const rulebookPath = "/rulebook.pdf"; 
+  // Path to your schedule image
+  const scheduleImage = "/images/schedule.jpg"; 
+  // Path to rulebook (keeping this button as a utility)
+  const rulebookPath = "/rulebook.pdf";
 
   return (
     <main className="min-h-screen bg-cyber-black py-24">
       <TitleBanner 
         title="EVENT_SCHEDULE" 
-        subtitle="Download Master Document" 
+        subtitle="Timeline & Protocols" 
         className="mb-12"
       />
       
-      <section className="max-w-4xl mx-auto p-8 bg-cyber-gray/50 border border-neon-cyan/30 text-center clip-tile">
-        <h2 className="text-3xl font-orbitron text-neon-yellow mb-4">
-          ACCESS DENIED // DOCUMENT ARCHIVE
-        </h2>
-        <p className="text-lg text-gray-300 mb-8">
-          The definitive timetable and rules for all events are contained within the official master file. 
-        </p>
+      <section className="max-w-6xl mx-auto px-4 md:px-8 text-center">
+        
+        {/* Schedule Image Container */}
+        <div className="relative clip-tile border-2 border-neon-cyan/30 bg-cyber-gray/20 p-2 md:p-4 shadow-[0_0_30px_rgba(0,243,255,0.1)]">
+          <CyberImage 
+            src={scheduleImage}
+            alt="Event Schedule"
+            className="w-full h-auto object-contain rounded-sm"
+          />
+        </div>
 
-        <Button asChild size="lg" className="w-full md:w-auto">
-          <Link href={rulebookPath} target="_blank" rel="noopener noreferrer">
-            <ArrowDownCircle className="w-5 h-5 mr-2" />
-            Download Rulebook & Schedule (PDF)
-          </Link>
-        </Button>
-      </section>
+        {/* Download Button (Optional Utility) */}
+        <div className="mt-12">
+            <Button asChild variant="outline" size="lg" className="border-neon-yellow text-neon-yellow hover:bg-neon-yellow hover:text-black font-orbitron tracking-wider">
+                <Link href={rulebookPath} target="_blank" rel="noopener noreferrer">
+                    <Download className="w-5 h-5 mr-2" />
+                    DOWNLOAD RULEBOOK PDF
+                </Link>
+            </Button>
+        </div>
 
-      {/* Placeholder for Schedule Details if you want to add them later */}
-      <section className="max-w-7xl mx-auto mt-16 px-6">
-          {/* You can paste your schedule details here later if needed */}
       </section>
     </main>
   );
